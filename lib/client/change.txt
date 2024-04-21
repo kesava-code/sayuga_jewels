@@ -1,0 +1,1 @@
+need to change all to https in client folder and in custom jewelry cubit file while in production.
