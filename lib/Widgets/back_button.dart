@@ -1,5 +1,5 @@
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' hide VoidCallback;
+//import 'dart:html' hide VoidCallback;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class MyBackButton extends StatelessWidget {
           onPressed!();
         } else {
           if (kIsWeb) {
-            window.history.back();
+           // window.history.back();
           } else {
             GoRouter.of(context).pop();
           }

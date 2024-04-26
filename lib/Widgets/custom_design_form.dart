@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sayuga_jewels/logic/cubit/custom_jewelry_post_cubit.dart';
@@ -132,9 +132,13 @@ class _CustomDesignFormState extends State<CustomDesignForm> {
               fillColor: Theme.of(context).colorScheme.surfaceVariant,
               hintText: 'Enter your email address',
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your email address.';
+            validator: (email) {
+              final emailRegex =
+                  RegExp(r"[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}");
+              if (email!.isEmpty) {
+                return 'Please enter an email address.';
+              } else if (!emailRegex.hasMatch(email)) {
+                return 'Please enter a valid email address.';
               }
               return null;
             },
@@ -150,6 +154,9 @@ class _CustomDesignFormState extends State<CustomDesignForm> {
           ),
           TextFormField(
             controller: _mobileController,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly
+            ],
             keyboardType: TextInputType.phone,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -191,12 +198,7 @@ class _CustomDesignFormState extends State<CustomDesignForm> {
                     mobile: mobileNumber,
                     description: description,
                   );
-
                   // Example showing a success message
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Custom design request submitted!')),
-                  );
                 }
               },
               child:

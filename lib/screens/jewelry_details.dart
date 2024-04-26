@@ -40,6 +40,12 @@ class _JewelryDetailsState extends State<JewelryDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final RouteMatch lastMatch =
+        GoRouter.of(context).routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches
+        : GoRouter.of(context).routerDelegate.currentConfiguration;
+    final String location = matchList.uri.toString();
     ScreenType screenType = FormFactor().getFormFactor(context);
     double corouselHeight = screenType == ScreenType.desktop
         ? 400
@@ -131,14 +137,7 @@ class _JewelryDetailsState extends State<JewelryDetails> {
                               const Expanded(child: SizedBox()),
                               TextButton.icon(
                                 onPressed: () {
-                                  Share.share(
-                                      LocationUrl.scheme +
-                                          LocationUrl.domain +
-                                          GoRouter.of(context)
-                                              .routerDelegate
-                                              .currentConfiguration
-                                              .uri
-                                              .toString(),
+                                  Share.share(LocationUrl.webUrl + location,
                                       subject: state.jewelry.title);
                                 },
                                 icon: const Icon(Icons.share_rounded),
@@ -335,10 +334,10 @@ class _JewelryDetailsState extends State<JewelryDetails> {
                                       .primaryContainer),
                               onPressed: () {
                                 String message =
-                                    "Would like to order - ${LocationUrl.scheme}${LocationUrl.domain}${GoRouter.of(context).routerDelegate.currentConfiguration.uri}";
+                                    "Would like to order - ${LocationUrl.webUrl + location}";
 
                                 Uri url = Uri.parse(
-                                    "https://wa.me/919441719386?text=${Uri.encodeQueryComponent(message)}");
+                                    "https://wa.me/14696296139?text=${Uri.encodeQueryComponent(message)}");
                                 launchWeb(url);
                               },
                               child: const Text("Order now")),
@@ -495,7 +494,7 @@ class _JewelryDetailsState extends State<JewelryDetails> {
                               OutlinedButton.icon(
                                   onPressed: () {
                                     String message =
-                                        "Need Quotation for  this product with customization and constraints -  ${LocationUrl.scheme}${LocationUrl.domain}${GoRouter.of(context).routerDelegate.currentConfiguration.uri}";
+                                        "Need Quotation for  this product with customization and constraints -  ${LocationUrl.webUrl + location}";
 
                                     Uri url = Uri.parse(
                                         "https://wa.me/14696296139?text=${Uri.encodeQueryComponent(message)}");
@@ -550,7 +549,7 @@ class _JewelryDetailsState extends State<JewelryDetails> {
                                 OutlinedButton(
                                   onPressed: () {
                                     String message =
-                                        "Subject: jewelry buying advice.";
+                                        "Subject: Jewelry buying advice.";
 
                                     Uri url = Uri.parse(
                                         "https://wa.me/13212306506?text=${Uri.encodeQueryComponent(message)}");

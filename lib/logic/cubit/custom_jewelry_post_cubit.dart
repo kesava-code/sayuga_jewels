@@ -27,7 +27,7 @@ class CustomJewelryPostCubit extends Cubit<CustomJewelryPostState> {
     // stream.cast();
 
     // int length = await file.length();
-    Uri uri = Uri.http(LocationUrl.domain, '/custom-design');
+    Uri uri = Uri.https(LocationUrl.domain, '/custom-design');
     http.MultipartRequest multipartRequest = http.MultipartRequest('POST', uri);
 
     Map<String, String> body = {

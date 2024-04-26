@@ -160,7 +160,7 @@ class _ActionBarWidgetState extends State<ActionBarWidget> {
             suffixIconColor: Theme.of(context).colorScheme.primary,
             suffixIcon: searchButton,
             filled: true,
-            fillColor: Theme.of(context).colorScheme.onPrimary,
+            fillColor: Theme.of(context).colorScheme.surfaceVariant,
             hintText: "Search sayuga.com",
             border: InputBorder.none,
           ),
