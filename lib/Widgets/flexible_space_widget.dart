@@ -11,9 +11,6 @@ class FlexibleSpaceWidget extends StatelessWidget {
 
     return FlexibleSpaceBar(
       expandedTitleScale: screenType == ScreenType.tablet ? 1.2 : 1.5,
-      titlePadding: screenType == ScreenType.tablet
-          ? const EdgeInsets.symmetric(horizontal: 60, vertical: 0)
-          : null,
       collapseMode: CollapseMode.none,
       title: screenType == ScreenType.desktop
           ? MouseRegion(
@@ -44,24 +41,30 @@ class FlexibleSpaceWidget extends StatelessWidget {
                                   .colorScheme
                                   .onPrimaryContainer),
                         ),
-                      )
+                      ),
+                      const Expanded(child: SizedBox())
                     ]),
               ),
             )
           : screenType == ScreenType.tablet
-              ? Align(
-                  alignment: Alignment.centerLeft,
-                  child: GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).go("/");
-                    },
-                    child: Image.asset(
-                      "assets/images/logo.png",
-                      fit: BoxFit.contain,
-                      height: 30,
-                      width: 30,
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).go("/");
+                      },
+                      child: Image.asset(
+                        "assets/images/logo.png",
+                        fit: BoxFit.contain,
+                        height: 30,
+                        width: 30,
+                      ),
                     ),
-                  ),
+                    const Expanded(child: SizedBox())
+                  ],
                 )
               : null,
     );

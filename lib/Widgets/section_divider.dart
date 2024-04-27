@@ -9,12 +9,12 @@ class SectionDivider extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Column(
       children: [
-        const SizedBox(height: 70),
+        const SizedBox(height: 50),
         Row(
           children: [
-            const Expanded(
+            Expanded(
                 child: Divider(
-              endIndent: 80,
+              endIndent: width > 600 ? 80 : 20,
             )),
             Text(
               title,
@@ -23,13 +23,13 @@ class SectionDivider extends StatelessWidget {
                   : Theme.of(context).textTheme.headlineSmall,
               softWrap: true,
             ),
-            const Expanded(
+            Expanded(
                 child: Divider(
-              indent: 80,
+              indent: width > 600 ? 80 : 20,
             ))
           ],
         ),
-        const SizedBox(height: 50),
+        const SizedBox(height: 30),
       ],
     );
   }
