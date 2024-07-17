@@ -36,7 +36,10 @@ class _FilterShellState extends State<FilterShell> {
               ),
             )
           ],
-          flexibleSpace: const FlexibleSpaceWidget(),
+          flexibleSpace: const Padding(
+            padding: EdgeInsets.only(left: 50.0),
+            child: FlexibleSpaceWidget(),
+          ),
         ),
         body: SizedBox(
           height: height,
@@ -76,7 +79,10 @@ class _FilterShellState extends State<FilterShell> {
             ),
           )
         ],
-        flexibleSpace: const FlexibleSpaceWidget(),
+        flexibleSpace: const Padding(
+          padding: EdgeInsets.only(left: 50.0),
+          child: FlexibleSpaceWidget(),
+        ),
       ),
       body: widget.child,
       bottomNavigationBar: BottomNavigationBar(

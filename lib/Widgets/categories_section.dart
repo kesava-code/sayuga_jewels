@@ -80,6 +80,7 @@ class CategoriesSection extends StatelessWidget {
 
           case CategoryStatus.success:
             return GridView(
+              padding: const EdgeInsets.all(0),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
